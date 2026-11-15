@@ -1,0 +1,8 @@
+{
+  "name": "Nightingale Tea Tourism Booking System",
+  "description": "Enterprise multi-estate tea tourism booking engine, Razorpay & Manual UPI payment portal, Admin management console, and Shared-cPanel PHP 8.x deployment package for Nightingaletea.com.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

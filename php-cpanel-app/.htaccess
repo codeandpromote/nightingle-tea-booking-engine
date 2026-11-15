@@ -1,0 +1,26 @@
+# Nightingale Tea Tourism - Root Shared cPanel .htaccess
+# Supports both Subdomain (booking.nightingaletea.com) and Subfolder (nightingaletea.com/booking)
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Force HTTPS in production (compatible with Cloudflare Flexible/Full SSL & cPanel AutoSSL)
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Block direct HTTP access to internal application directories
+    RewriteRule ^(app|config|database|storage|views|cron)/ - [F,L]
+
+    # Route everything cleanly to public/ if DocumentRoot points to project root
+    RewriteCond %{REQUEST_URI} !/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Block dotfiles (.env, .git, .htaccess)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
